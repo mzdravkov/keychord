@@ -59,18 +59,15 @@ Shoes.app do
  keypress do |k|
    if last_key and Time.now - last_time < 0.1 and (keys[[last_key, k]] or keys[[k, last_key]])
      k = (keys[[last_key, k]] or keys[[k, last_key]])
-     info.replace "#{k} was PRESSED."
      text.replace (textstr = textstr[0...-1])
-     print k
-   else
-     info.replace "#{k} was PRESSED."
-     print k
    end
-   if k == 'BackSpace'
-     text.replace (textstr = textstr[0...-1])
+   info.replace "#{k} was PRESSED."
+   new_text = if k == 'BackSpace'
+     textstr = textstr[0...-1]
    else
-     text.replace (textstr += k)
+     textstr += k
    end
+   text.replace new_text
    last_key = k
    last_time = Time.now
  end
