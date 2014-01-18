@@ -70,7 +70,7 @@ Shoes.app do
    info_complex_keys.text = info_complex_keys.text + "#{v} -> #{k[0]} + #{k[1]}\n"
  end
  keypress do |k|
-   if last_key and Time.now - last_time < 0.1 and (keys[[last_key, k]] or keys[[k, last_key]])
+   if last_key and Time.now - last_time < 0.05 and (keys[[last_key, k]] or keys[[k, last_key]])
      k = (keys[[last_key, k]] or keys[[k, last_key]])
      text.replace (textstr = textstr[0...-1])
    end
